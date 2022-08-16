@@ -1,11 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/light_background"
+        android:padding="35dp"
         tools:context=".LoginActivity">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            app:layout_constraintStart_toStartOf="@id/btnKakaoLogin"
+            app:layout_constraintEnd_toEndOf="@id/btnKakaoLogin"
+            app:layout_constraintBottom_toTopOf="@id/btnKakaoLogin"
+            android:text="@string/title_login"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/font1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/btnKakaoLogin"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/katalk_button_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btnGoogleLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/kakao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="@string/btnKatalk"
+                android:textColor="@color/light_black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnSignUp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/signup_button_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btnNaverLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogleLogin"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/signup_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="@string/signup"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnGoogleLogin"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/google_button_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btnSignUp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnKakaoLogin"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/google_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Google로 시작하기"
+                android:textColor="@color/light_black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnNaverLogin"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/naver_icon"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@id/btnEmailLogin"
+            app:layout_constraintStart_toStartOf="@id/btnSignUp"
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/btnEmailLogin"
+            android:layout_width="40dp"
+            android:text="E"
+            android:textStyle="bold"
+            android:background="@drawable/email_button_background"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/btnNaverLogin"
+            app:layout_constraintTop_toTopOf="@id/btnNaverLogin"
+            app:layout_constraintBottom_toBottomOf="@id/btnNaverLogin"
+            app:layout_constraintEnd_toEndOf="@id/btnSignUp"
+            android:layout_height="40dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
