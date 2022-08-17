@@ -28,10 +28,40 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        binding.btnKakaoLogin.setOnClickListener {
+
+            //카톡 앱이 깔려 있는 상황
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(mContext)) {
+                UserApiClient.instance.loginWithKakaoTalk(mContext) { token, error ->
+
+                    if (error != null) {
+                        Log.e("카톡로그인", "로그인 실패")
+                    } else if (token != null) {
+                        Log.d("카톡로그인", "로그인 성공")
+                        Log.d("카톡로그인", token.accessToken)
+
+                    }
+                }
+
+            } else { //카톡 앱이 깔려있지 않는 상황.
+                UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
+
+                    if (error != null) {
+                        Log.e("카톡로그인", "로그인 실패")
+                        Log.e("카톡로그인", error.message.toString())
+                    } else if (token != null) {
+                        Log.d("카톡로그인", "로그인 성공")
+                        Log.d("카톡로그인", token.accessToken)
+
+                    }
+                }
+            }
+        }
     }
 
-    override fun setValues() {
 
-    }
+            override fun setValues() {
+
+            }
 }
 

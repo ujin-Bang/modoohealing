@@ -17,6 +17,7 @@
         android:name=".global.GlobalApplication"
         tools:targetApi="31">
 
+
         <activity
             android:name=".BaseActivity"
             android:exported="false"
@@ -33,7 +34,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -44,7 +45,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="oauth"
-                    android:scheme="a0a8a5bcf51e0b266321bda0f1c0bcbf" />
+                    android:scheme="kakaoa0a8a5bcf51e0b266321bda0f1c0bcbf" />
             </intent-filter>
         </activity>
     </application>

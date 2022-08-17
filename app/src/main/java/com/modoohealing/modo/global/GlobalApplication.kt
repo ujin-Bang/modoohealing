@@ -7,6 +7,6 @@ class GlobalApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        KakaoSdk.init(this,"{a0a8a5bcf51e0b266321bda0f1c0bcbf}")
+        KakaoSdk.init(this,"a0a8a5bcf51e0b266321bda0f1c0bcbf")
     }
 }
