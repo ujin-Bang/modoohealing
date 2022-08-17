@@ -40,6 +40,8 @@ class LoginActivity : BaseActivity() {
                         Log.d("카톡로그인", "로그인 성공")
                         Log.d("카톡로그인", token.accessToken)
 
+                        getMyInfoFromKakao()
+
                     }
                 }
 
@@ -53,15 +55,29 @@ class LoginActivity : BaseActivity() {
                         Log.d("카톡로그인", "로그인 성공")
                         Log.d("카톡로그인", token.accessToken)
 
+                        getMyInfoFromKakao()
                     }
                 }
             }
         }
     }
-
-
             override fun setValues() {
 
             }
+
+    fun getMyInfoFromKakao(){
+
+        UserApiClient.instance.me { user, error ->
+
+            if (error != null){
+                Log.d("카톡로그인","사용자 정보 요청 실패", error)
+            }
+            else if (user != null){
+                Log.d("카톡로그인","사용자 정보요청 성공"+"\n 회원번호: ${user.id}"+
+                "\n 이메일: ${user.kakaoAccount?.email}"+
+                "\n 닉네임: ${user.kakaoAccount?.profile?.nickname}")
+            }
+        }
+    }
 }
 
