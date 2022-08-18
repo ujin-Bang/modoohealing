@@ -80,6 +80,7 @@ class LoginActivity : BaseActivity() {
                         Log.d("카톡로그인", token.accessToken)
 
                         getMyInfoFromKakao()
+                        startActivity(Intent(mContext,MainActivity::class.java))
                     }
                 }
             }
@@ -108,6 +109,7 @@ class LoginActivity : BaseActivity() {
                             val gender = result.profile?.gender.toString()
                             val nickname = result.profile?.nickname.toString()
                             val id = result.profile?.id.toString()
+                            //사용할 API권한 동의한 목록만 보여줌. naver개발페이지에서 설정.
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $name")
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이메일 : $email")
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 성별 : $gender")
@@ -116,6 +118,9 @@ class LoginActivity : BaseActivity() {
 
                             val naverAccessToken = NaverIdLoginSDK.getAccessToken()
                             Log.e(TAG, "naverAccessToken : $naverAccessToken")
+
+                            startActivity(Intent(mContext,MainActivity::class.java))
+
                         }
 
                         override fun onError(errorCode: Int, message: String) {
@@ -196,6 +201,10 @@ class LoginActivity : BaseActivity() {
                                             Log.e(TAG, "email : $email")
                                             Log.e(TAG, "uId : $uId")
                                             Log.e(TAG, "name : $name")
+
+                                            startActivity(Intent(mContext,MainActivity::class.java))
+
+
                                             val googleSignInToken = account.idToken ?: ""
                                             if (googleSignInToken != "") {
                                                 Log.e(TAG, "googleSignInToken : $googleSignInToken")
