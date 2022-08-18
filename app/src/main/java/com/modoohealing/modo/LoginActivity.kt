@@ -76,17 +76,17 @@ class LoginActivity : BaseActivity() {
             }
         }
 
-            binding.btnGoogleLogin.setOnClickListener {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build()
-                    val googleSignInClient = GoogleSignIn.getClient(mContext,gso)
-                    val signInIntent: Intent = googleSignInClient.signInIntent
-                    launcher.launch(signInIntent)
-                }
+        binding.btnGoogleLogin.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+                val googleSignInClient = GoogleSignIn.getClient(mContext, gso)
+                val signInIntent: Intent = googleSignInClient.signInIntent
+                launcher.launch(signInIntent)
             }
+        }
 
     }
 
@@ -112,7 +112,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    fun launcher(){
+    fun launcher() {
         firebaseAuth = FirebaseAuth.getInstance()
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
@@ -124,7 +124,8 @@ class LoginActivity : BaseActivity() {
                         task.getResult(ApiException::class.java)?.let { account ->
                             val tokenId = account.idToken
                             if (tokenId != null && tokenId != "") {
-                                val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+                                val credential: AuthCredential =
+                                    GoogleAuthProvider.getCredential(account.idToken, null)
                                 firebaseAuth.signInWithCredential(credential)
                                     .addOnCompleteListener {
                                         if (firebaseAuth.currentUser != null) {
@@ -145,7 +146,7 @@ class LoginActivity : BaseActivity() {
                                     }
                             }
                         } ?: throw Exception()
-                    }   catch (e: Exception) {
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
