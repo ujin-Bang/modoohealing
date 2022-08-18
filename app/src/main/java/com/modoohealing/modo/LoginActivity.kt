@@ -1,12 +1,8 @@
 package com.modoohealing.modo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.bind
-import androidx.databinding.DataBindingUtil.setContentView
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.modoohealing.modo.databinding.ActivityLoginBinding
@@ -61,21 +57,24 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
-            override fun setValues() {
 
-            }
+    override fun setValues() {
 
-    fun getMyInfoFromKakao(){
+    }
+
+    fun getMyInfoFromKakao() {
 
         UserApiClient.instance.me { user, error ->
 
-            if (error != null){
-                Log.d("카톡로그인","사용자 정보 요청 실패", error)
-            }
-            else if (user != null){
-                Log.d("카톡로그인","사용자 정보요청 성공"+"\n 회원번호: ${user.id}"+
-                "\n 이메일: ${user.kakaoAccount?.email}"+
-                "\n 닉네임: ${user.kakaoAccount?.profile?.nickname}")
+            if (error != null) {
+                Log.d("카톡로그인", "사용자 정보 요청 실패", error)
+            } else if (user != null) {
+                Log.d(
+                    "카톡로그인", "사용자 정보요청 성공" +
+                            "\n 회원번호: ${user.id}" +
+                            "\n 이메일: ${user.kakaoAccount?.email}" +
+                            "\n 닉네임: ${user.kakaoAccount?.profile?.nickname}"
+                )
             }
         }
     }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "848511687937",
+    "project_id": "modoohealing",
+    "storage_bucket": "modoohealing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848511687937:android:4fe3451956fb214f964f00",
+        "android_client_info": {
+          "package_name": "com.modoohealing.modo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848511687937-dcfvqm2tqvc7e3jbkchmbkh0q24v5dmp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMmm-qtOVqI9h6NSMFrYtmrQZfWktvQJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848511687937-dcfvqm2tqvc7e3jbkchmbkh0q24v5dmp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
