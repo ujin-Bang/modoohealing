@@ -3,15 +3,18 @@ package com.modoohealing.modo
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 
 abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var mContext: Context
-    lateinit var btnBack: Button
+    lateinit var btnBack: ImageButton
     lateinit var txtMainName: TextView
+    lateinit var txtSignup: TextView
+    lateinit var layoutSignup: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +43,10 @@ abstract class BaseActivity : AppCompatActivity() {
        val toolBar = defActionBar.customView.parent as androidx.appcompat.widget.Toolbar
        toolBar.setContentInsetsAbsolute(0,0)
 
-
-
+        btnBack = defActionBar.customView.findViewById(R.id.btnBack)
+        txtMainName = defActionBar.customView.findViewById(R.id.txtMainName)
+        txtSignup = defActionBar.customView.findViewById(R.id.txtSignup)
+        layoutSignup = defActionBar.customView.findViewById(R.id.linearLayoutSignup)
 
    }
 }

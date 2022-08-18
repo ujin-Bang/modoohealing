@@ -152,6 +152,10 @@ class LoginActivity : BaseActivity() {
             NaverIdLoginSDK.authenticate(mContext, oAuthLoginCallback)
 
         }
+
+        binding.btnSignUp.setOnClickListener {
+            startActivity(Intent(mContext,SignUpActivity::class.java))
+        }
     }
 
 
