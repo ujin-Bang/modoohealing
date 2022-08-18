@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.Response
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,9 +19,16 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.modoohealing.modo.databinding.ActivityLoginBinding
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import com.navercorp.nid.profile.NidProfileCallback
+import com.navercorp.nid.profile.api.NidProfileApi
+import com.navercorp.nid.profile.data.NidProfileResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class LoginActivity : BaseActivity() {
@@ -38,6 +46,7 @@ class LoginActivity : BaseActivity() {
         Log.d("Hash", keyHash)
         setValues()
         setupEvents()
+
 
     }
 
@@ -88,11 +97,62 @@ class LoginActivity : BaseActivity() {
             }
         }
 
+        binding.btnNaverLogin.setOnClickListener {
+            val oAuthLoginCallback = object : OAuthLoginCallback {
+                override fun onSuccess() {
+                    // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
+                    NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+                        override fun onSuccess(result: NidProfileResponse) {
+                            val name = result.profile?.name.toString()
+                            val email = result.profile?.email.toString()
+                            val gender = result.profile?.gender.toString()
+                            val nickname = result.profile?.nickname.toString()
+                            val id = result.profile?.id.toString()
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $name")
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 이메일 : $email")
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 성별 : $gender")
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 닉네임: $nickname")
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - ID: $id")
+
+                            val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+                            Log.e(TAG, "naverAccessToken : $naverAccessToken")
+                        }
+
+                        override fun onError(errorCode: Int, message: String) {
+                            //
+                        }
+
+                        override fun onFailure(httpStatus: Int, message: String) {
+                            //
+                        }
+                    })
+                }
+
+                override fun onError(errorCode: Int, message: String) {
+                    val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+                    Log.e(TAG, "naverAccessToken : $naverAccessToken")
+                }
+
+                override fun onFailure(httpStatus: Int, message: String) {
+                    //
+                }
+            }
+
+            val clientId = getString(R.string.naver_client_id)
+            val clientPw = getString(R.string.naver_client_secret)
+            val appName = getString(R.string.naver_app_name)
+            NaverIdLoginSDK.initialize(mContext, clientId, clientPw,appName)
+            NaverIdLoginSDK.authenticate(mContext, oAuthLoginCallback)
+
+        }
     }
+
+
 
     override fun setValues() {
 
-        launcher()
+        launcherGoogleFirebase()
+
     }
 
     fun getMyInfoFromKakao() {
@@ -112,7 +172,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    fun launcher() {
+    fun launcherGoogleFirebase() {
         firebaseAuth = FirebaseAuth.getInstance()
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
@@ -153,5 +213,7 @@ class LoginActivity : BaseActivity() {
             })
 
     }
-}
+
+ }
+
 

@@ -13,4 +13,9 @@
     <string name="sigin_up">간편 무료회원가입</string>
     <string name="signup">간편 무료회원가입</string>
     <string name="title_login">모두의 인연</string>
+
+    <string name="naver_client_id">UkWpZyoejIUgknOaRGb3</string>
+    <string name="naver_client_secret">9IfQSLe_9n</string>
+    <string name="naver_app_name">모두의 인연</string>
+
 </resources>
