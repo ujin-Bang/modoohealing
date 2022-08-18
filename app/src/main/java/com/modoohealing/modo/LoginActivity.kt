@@ -1,15 +1,34 @@
 package com.modoohealing.modo
 
+import android.content.Intent
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.modoohealing.modo.databinding.ActivityLoginBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class LoginActivity : BaseActivity() {
 
     lateinit var binding: ActivityLoginBinding
+    private val TAG = this.javaClass.simpleName
+    private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +36,9 @@ class LoginActivity : BaseActivity() {
 
         val keyHash = Utility.getKeyHash(this)//카카오SDK를 이용한 KeyHash값 받기
         Log.d("Hash", keyHash)
-
-        setupEvents()
         setValues()
+        setupEvents()
+
     }
 
     override fun setupEvents() {
@@ -56,10 +75,24 @@ class LoginActivity : BaseActivity() {
                 }
             }
         }
+
+            binding.btnGoogleLogin.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id))
+                        .requestEmail()
+                        .build()
+                    val googleSignInClient = GoogleSignIn.getClient(mContext,gso)
+                    val signInIntent: Intent = googleSignInClient.signInIntent
+                    launcher.launch(signInIntent)
+                }
+            }
+
     }
 
     override fun setValues() {
 
+        launcher()
     }
 
     fun getMyInfoFromKakao() {
@@ -77,6 +110,43 @@ class LoginActivity : BaseActivity() {
                 )
             }
         }
+    }
+
+    fun launcher(){
+        firebaseAuth = FirebaseAuth.getInstance()
+        launcher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
+                Log.e(TAG, "resultCode : ${result.resultCode}")
+                Log.e(TAG, "result : $result")
+                if (result.resultCode == RESULT_OK) {
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                    try {
+                        task.getResult(ApiException::class.java)?.let { account ->
+                            val tokenId = account.idToken
+                            if (tokenId != null && tokenId != "") {
+                                val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+                                firebaseAuth.signInWithCredential(credential)
+                                    .addOnCompleteListener {
+                                        if (firebaseAuth.currentUser != null) {
+                                            val user: FirebaseUser = firebaseAuth.currentUser!!
+                                            val email = user.email.toString()
+                                            Log.e(TAG, "email : $email")
+                                            val googleSignInToken = account.idToken ?: ""
+                                            if (googleSignInToken != "") {
+                                                Log.e(TAG, "googleSignInToken : $googleSignInToken")
+                                            } else {
+                                                Log.e(TAG, "googleSignInToken이 null")
+                                            }
+                                        }
+                                    }
+                            }
+                        } ?: throw Exception()
+                    }   catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            })
+
     }
 }
 
