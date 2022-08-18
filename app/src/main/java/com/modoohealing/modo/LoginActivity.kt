@@ -130,7 +130,11 @@ class LoginActivity : BaseActivity() {
                                         if (firebaseAuth.currentUser != null) {
                                             val user: FirebaseUser = firebaseAuth.currentUser!!
                                             val email = user.email.toString()
+                                            val uId = user.uid.toString()
+                                            val name = user.displayName.toString()
                                             Log.e(TAG, "email : $email")
+                                            Log.e(TAG, "uId : $uId")
+                                            Log.e(TAG, "name : $name")
                                             val googleSignInToken = account.idToken ?: ""
                                             if (googleSignInToken != "") {
                                                 Log.e(TAG, "googleSignInToken : $googleSignInToken")
