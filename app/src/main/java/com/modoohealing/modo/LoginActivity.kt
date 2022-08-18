@@ -42,8 +42,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        val keyHash = Utility.getKeyHash(this)//카카오SDK를 이용한 KeyHash값 받기
-        Log.d("Hash", keyHash)
+
         setValues()
         setupEvents()
 
@@ -53,6 +52,9 @@ class LoginActivity : BaseActivity() {
     override fun setupEvents() {
 
         binding.btnKakaoLogin.setOnClickListener {
+
+           // val keyHash = Utility.getKeyHash(this)//카카오SDK를 이용한 KeyHash값 받기
+           // Log.d("Hash", keyHash)
 
             //카톡 앱이 깔려 있는 상황
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(mContext)) {
