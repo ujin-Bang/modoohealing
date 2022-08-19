@@ -1,11 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="20dp"
         tools:context=".SignUpActivity">
+        
+        <TextView
+            android:id="@+id/txtEmail"
+            android:text="이메일"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEmail"
+            android:hint=" 이메일"
+            android:inputType="text"
+            android:lines="1"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.45"
+            tools:ignore="TextFields" />
+
+        <ImageView
+            android:id="@+id/imgEmail"
+            app:layout_constraintStart_toEndOf="@id/edtEmail"
+            app:layout_constraintTop_toTopOf="@id/edtEmail"
+            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+            android:src="@drawable/email_icon"
+            android:layout_width="30dp"
+            android:alpha="0.7"
+            android:layout_height="30dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerSignup"
+            app:layout_constraintStart_toEndOf="@id/imgEmail"
+            app:layout_constraintTop_toTopOf="@id/edtEmail"
+            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/siginup_edittext_background"
+            app:layout_constraintWidth_percent="0.45"/>
+
+        <EditText
+            android:id="@+id/edtDirectInput"
+            android:padding="10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgEmail"
+            app:layout_constraintTop_toTopOf="@id/edtEmail"
+            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+            android:hint="직접입력"
+            android:inputType="text"
+            android:lines="1"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.45"
+            tools:ignore="TextFields" />
+
+
+        <TextView
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail"
+            android:layout_marginTop="6dp"
+            android:text="@string/signcondent"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="@string/pw"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtPw"
+            android:hint="@string/pwhint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            app:layout_constraintStart_toStartOf="@id/edtPw"
+            app:layout_constraintTop_toTopOf="@id/edtPw"
+            app:layout_constraintBottom_toBottomOf="@id/edtPw"
+            app:layout_constraintEnd_toEndOf="@id/edtPw"
+            android:layout_marginStart="330dp"
+            android:alpha="0.5"
+            android:src="@drawable/close_eye_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <EditText
+            android:id="@+id/edtRePw"
+            android:hint="@string/pwhintre"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@id/edtPw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            app:layout_constraintStart_toStartOf="@id/edtRePw"
+            app:layout_constraintEnd_toEndOf="@id/edtRePw"
+            app:layout_constraintTop_toTopOf="@id/edtRePw"
+            app:layout_constraintBottom_toBottomOf="@id/edtRePw"
+            android:layout_marginStart="330dp"
+            android:alpha="0.5"
+            android:src="@drawable/close_eye_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/txtNickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtRePw"
+            android:layout_marginTop="10dp"
+            android:text="@string/nickname"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtNickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNickname"
+            android:layout_marginTop="10dp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintEnd_toStartOf="@id/imgMan"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:inputType="text"
+            android:hint="@string/nickname_hint"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/imgMan"
+            android:src="@drawable/man_icon"
+            android:alpha="0.5"
+            app:layout_constraintTop_toTopOf="@id/edtNickname"
+            app:layout_constraintBottom_toBottomOf="@id/edtNickname"
+            app:layout_constraintStart_toEndOf="@id/edtNickname"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="45dp"
+            app:layout_constraintEnd_toStartOf="@id/imgWoman"
+            android:layout_height="45dp"/>
+
+        <ImageView
+            android:id="@+id/imgWoman"
+            app:layout_constraintStart_toEndOf="@id/imgMan"
+            app:layout_constraintTop_toTopOf="@id/imgMan"
+            app:layout_constraintBottom_toBottomOf="@id/imgMan"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/woman_icon"
+            android:alpha="0.5"
+            android:layout_width="45dp"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_height="45dp"/>
+
+        <TextView
+            android:id="@+id/txtGender"
+            android:text="@string/txtgender"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="@id/imgMan"
+            app:layout_constraintBottom_toTopOf="@id/imgMan"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtMan"
+            android:text="@string/txtman"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/imgMan"
+            app:layout_constraintEnd_toEndOf="@id/imgMan"
+            app:layout_constraintTop_toBottomOf="@id/imgMan"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtWoman"
+            android:text="@string/txtwoman"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/imgWoman"
+            app:layout_constraintEnd_toEndOf="@id/imgWoman"
+            app:layout_constraintTop_toBottomOf="@id/imgWoman"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtBirthYear"
+            android:text="@string/birth_year"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtNickname"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinnerBirthYear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBirthYear"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/siginup_edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="40dp"/>
 
 
 

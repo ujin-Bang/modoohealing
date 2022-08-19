@@ -13,7 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var mContext: Context
     lateinit var btnBack: ImageButton
     lateinit var txtMainName: TextView
-    lateinit var txtSignup: TextView
+    private lateinit var txtSignup: TextView
     lateinit var layoutSignup: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {

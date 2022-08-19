@@ -18,5 +18,16 @@
     <string name="naver_client_secret">9IfQSLe_9n</string>
     <string name="naver_app_name">모두의 인연</string>
     <string name="txt_signup">모두의 인연 회원가입</string>
+    <string name="signcondent">⚡︎이메일은 비밀번호 찾기시에 이용됩니다.</string>
+    <string name="pw">비밀번호</string>
+    <string name="pwhint">영어와 숫자로 조합 가능(4~12자)</string>
+    <string name="pwhintre">비밀번호를 재입력해주세요.</string>
+    <string name="nickname">대화명</string>
+    <string name="txtgender">성별</string>
+    <string name="nickname_hint">한글과 숫자로 조합 가능(2~8자)</string>
+    <string name="txtman">남성</string>
+    <string name="txtwoman">여성</string>
+    <string name="birth_year">태어난 연도</string>
+
 
 </resources>

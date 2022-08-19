@@ -67,6 +67,7 @@ class LoginActivity : BaseActivity() {
                         Log.d("카톡로그인", token.accessToken)
 
                         getMyInfoFromKakao()
+                        startActivity(Intent(mContext,MainActivity::class.java))
 
                     }
                 }
