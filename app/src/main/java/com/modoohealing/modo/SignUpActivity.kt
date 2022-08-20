@@ -1,5 +1,6 @@
 package com.modoohealing.modo
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
@@ -36,8 +37,10 @@ class SignUpActivity : BaseActivity() {
             alert.show()
         }
 
-        spinner()
-
+        spinnerEmail()
+        spinnerBirthYear()
+        spinnerArea()
+        spinnerSpouseArea()
     }
 
     override fun setValues() {
@@ -47,13 +50,15 @@ class SignUpActivity : BaseActivity() {
 
     }
 
-    fun spinner() {
-        var data = listOf("- 선택하세요 - ", "gmail.com", "naver.com", "daum.net", "직접입력")
+    @SuppressLint("ResourceType")
+    fun spinnerEmail() {
 
-        var adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data)
+        var items = resources.getStringArray(R.array.email)
+
+        var adapter = ArrayAdapter<String>(this, R.layout.signup_custom_item, items)
         binding.spinnerSignup.adapter = adapter
 
-        binding.spinnerSignup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spinnerSignup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -61,9 +66,8 @@ class SignUpActivity : BaseActivity() {
                 id: Long
             ) {
                 Toast.makeText(mContext, "선택아이템 :${position}", Toast.LENGTH_SHORT).show()
-                Log.d("선택한 아이템 인덱스", "${data.get(position)}")
 
-                when(position){
+                when (position) {
                     0 -> {
 
                     }
@@ -91,4 +95,96 @@ class SignUpActivity : BaseActivity() {
 
         }
     }
+
+    fun spinnerBirthYear() {
+
+        var items = resources.getStringArray(R.array.birth_year)
+
+        var adapter = ArrayAdapter<String>(mContext, R.layout.signup_custom_item, items)
+
+        binding.spinnerBirthYear.adapter = adapter
+
+        binding.spinnerBirthYear.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    when (position) {
+                        0 -> {
+                            return
+                        }
+                        in 1..10 -> {
+
+                        }
+                        in 11..20 -> {
+
+                        }
+                        in 21..30 -> {
+
+                        }
+                        in 31..40 -> {
+
+                        }
+                        else -> {
+
+                        }
+                    }
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
+    }
+
+    fun spinnerArea(){
+        var areaItems = resources.getStringArray(R.array.area)
+        var adapter = ArrayAdapter<String>(mContext,R.layout.signup_custom_item, areaItems)
+        binding.spinnerArea.adapter = adapter
+
+        binding.spinnerArea.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+    }
+
+    fun spinnerSpouseArea(){
+        val items = resources.getStringArray(R.array.spouseArea)
+        var adapter = ArrayAdapter<String>(mContext,R.layout.signup_custom_item, items)
+        binding.spinnerSpouseArea.adapter = adapter
+
+        binding.spinnerSpouseArea.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+    }
 }
+

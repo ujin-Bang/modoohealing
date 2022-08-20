@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.19375" />
         <entry key="app/src/main/res/drawable/email_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/google_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/google_login_background.xml" value="0.117" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout/base_custom_action_bar.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/signup_custom_item.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="birth_year">
+        <item>태어난 연도를 선택해주세요.</item>
+        <item>1960년</item>
+        <item>1961년</item>
+        <item>1962년</item>
+        <item>1963년</item>
+        <item>1964년</item>
+        <item>1965년</item>
+        <item>1966년</item>
+        <item>1967년</item>
+        <item>1968년</item>
+        <item>1969년</item>
+        <item>1970년</item>
+        <item>1971년</item>
+        <item>1972년</item>
+        <item>1973년</item>
+        <item>1974년</item>
+        <item>1975년</item>
+        <item>1976년</item>
+        <item>1977년</item>
+        <item>1978년</item>
+        <item>1979년</item>
+        <item>1980년</item>
+        <item>1981년</item>
+        <item>1982년</item>
+        <item>1983년</item>
+        <item>1984년</item>
+        <item>1985년</item>
+        <item>1986년</item>
+        <item>1987년</item>
+        <item>1988년</item>
+        <item>1989년</item>
+        <item>1990년</item>
+        <item>1991년</item>
+        <item>1992년</item>
+        <item>1993년</item>
+        <item>1994년</item>
+        <item>1995년</item>
+        <item>1996년</item>
+        <item>1997년</item>
+        <item>1998년</item>
+        <item>1999년</item>
+        <item>2000년</item>
+        <item>2001년</item>
+        <item>2002년</item>
+        <item>2003년</item>
+        <item>2004년</item>
+
+    </string-array>
+
+    <string-array name="email">
+        <item>google.com</item>
+        <item>naver.com</item>
+        <item>daum.net</item>
+        <item>hanmail.com</item>
+        <item>-- 직접 입력 --</item>
+        <item></item>
+    </string-array>
+
+    <string-array name="area">
+        <item>현재 거주 지역을 선택해주세요.</item>
+        <item>서울</item>
+        <item>경기</item>
+        <item>인천</item>
+        <item>대전</item>
+        <item>대구</item>
+        <item>부산</item>
+        <item>광주</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>충북</item>
+        <item>충남</item>
+        <item>전북</item>
+        <item>전남</item>
+        <item>경북</item>
+        <item>경남</item>
+        <item>강원</item>
+        <item>제주</item>
+        <item>해외</item>
+
+    </string-array>
+
+    <string-array name="spouseArea">
+        <item>배우자 희망 지역을 선택해주세요.</item>
+        <item>서울</item>
+        <item>경기</item>
+        <item>인천</item>
+        <item>대전</item>
+        <item>대구</item>
+        <item>부산</item>
+        <item>광주</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>충북</item>
+        <item>충남</item>
+        <item>전북</item>
+        <item>전남</item>
+        <item>경북</item>
+        <item>경남</item>
+        <item>강원</item>
+        <item>제주</item>
+        <item>해외</item>
+
+    </string-array>
+
+
+</resources>

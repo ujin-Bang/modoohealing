@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -7,237 +8,332 @@
         android:paddingHorizontal="12dp"
         android:paddingTop="20dp"
         tools:context=".SignUpActivity">
-        
-        <TextView
-            android:id="@+id/txtEmail"
-            android:text="이메일"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtEmail"
-            android:hint=" 이메일"
-            android:inputType="text"
-            android:lines="1"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="0dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.45"
-            tools:ignore="TextFields" />
-
-        <ImageView
-            android:id="@+id/imgEmail"
-            app:layout_constraintStart_toEndOf="@id/edtEmail"
-            app:layout_constraintTop_toTopOf="@id/edtEmail"
-            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
-            android:src="@drawable/email_icon"
-            android:layout_width="30dp"
-            android:alpha="0.7"
-            android:layout_height="30dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerSignup"
-            app:layout_constraintStart_toEndOf="@id/imgEmail"
-            app:layout_constraintTop_toTopOf="@id/edtEmail"
-            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="@drawable/siginup_edittext_background"
-            app:layout_constraintWidth_percent="0.45"/>
-
-        <EditText
-            android:id="@+id/edtDirectInput"
-            android:padding="10dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imgEmail"
-            app:layout_constraintTop_toTopOf="@id/edtEmail"
-            app:layout_constraintBottom_toBottomOf="@id/edtEmail"
-            android:hint="직접입력"
-            android:inputType="text"
-            android:lines="1"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.45"
-            tools:ignore="TextFields" />
-
-
-        <TextView
-
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtEmail"
-            android:layout_marginTop="6dp"
-            android:text="@string/signcondent"
-            android:textSize="12sp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:text="@string/pw"
-            android:textColor="@color/black"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/edtPw"
-            android:hint="@string/pwhint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="0dp"
-            android:padding="10dp"
-            android:inputType="textPassword"
-            android:layout_height="wrap_content"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                android:layout_weight="1">
 
-        <ImageView
-            app:layout_constraintStart_toStartOf="@id/edtPw"
-            app:layout_constraintTop_toTopOf="@id/edtPw"
-            app:layout_constraintBottom_toBottomOf="@id/edtPw"
-            app:layout_constraintEnd_toEndOf="@id/edtPw"
-            android:layout_marginStart="330dp"
-            android:alpha="0.5"
-            android:src="@drawable/close_eye_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
 
-        <EditText
-            android:id="@+id/edtRePw"
-            android:hint="@string/pwhintre"
-            android:inputType="textPassword"
-            app:layout_constraintTop_toBottomOf="@id/edtPw"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="0dp"
-            android:padding="10dp"
-            android:layout_height="wrap_content"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <ImageView
-            app:layout_constraintStart_toStartOf="@id/edtRePw"
-            app:layout_constraintEnd_toEndOf="@id/edtRePw"
-            app:layout_constraintTop_toTopOf="@id/edtRePw"
-            app:layout_constraintBottom_toBottomOf="@id/edtRePw"
-            android:layout_marginStart="330dp"
-            android:alpha="0.5"
-            android:src="@drawable/close_eye_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이메일"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtNickname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtRePw"
-            android:layout_marginTop="10dp"
-            android:text="@string/nickname"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/edtEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:hint=" 이메일"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:padding="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtEmail"
+                        app:layout_constraintWidth_percent="0.45"
+                        tools:ignore="TextFields" />
 
-        <EditText
-            android:id="@+id/edtNickname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNickname"
-            android:layout_marginTop="10dp"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintEnd_toStartOf="@id/imgMan"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:inputType="text"
-            android:hint="@string/nickname_hint"
-            android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/imgEmail"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:alpha="0.7"
+                        android:src="@drawable/email_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+                        app:layout_constraintStart_toEndOf="@id/edtEmail"
+                        app:layout_constraintTop_toTopOf="@id/edtEmail" />
 
-        <ImageView
-            android:id="@+id/imgMan"
-            android:src="@drawable/man_icon"
-            android:alpha="0.5"
-            app:layout_constraintTop_toTopOf="@id/edtNickname"
-            app:layout_constraintBottom_toBottomOf="@id/edtNickname"
-            app:layout_constraintStart_toEndOf="@id/edtNickname"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="45dp"
-            app:layout_constraintEnd_toStartOf="@id/imgWoman"
-            android:layout_height="45dp"/>
+                    <Spinner
+                        android:id="@+id/spinnerSignup"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgEmail"
+                        app:layout_constraintTop_toTopOf="@id/edtEmail"
+                        app:layout_constraintWidth_percent="0.45" />
 
-        <ImageView
-            android:id="@+id/imgWoman"
-            app:layout_constraintStart_toEndOf="@id/imgMan"
-            app:layout_constraintTop_toTopOf="@id/imgMan"
-            app:layout_constraintBottom_toBottomOf="@id/imgMan"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/woman_icon"
-            android:alpha="0.5"
-            android:layout_width="45dp"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_height="45dp"/>
+                    <EditText
+                        android:id="@+id/edtDirectInput"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:hint="직접입력"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgEmail"
+                        app:layout_constraintTop_toTopOf="@id/edtEmail"
+                        app:layout_constraintWidth_percent="0.45"
+                        tools:ignore="TextFields" />
 
-        <TextView
-            android:id="@+id/txtGender"
-            android:text="@string/txtgender"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintStart_toStartOf="@id/imgMan"
-            app:layout_constraintBottom_toTopOf="@id/imgMan"
-            android:textColor="@color/black"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/txtMan"
-            android:text="@string/txtman"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/imgMan"
-            app:layout_constraintEnd_toEndOf="@id/imgMan"
-            app:layout_constraintTop_toBottomOf="@id/imgMan"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                    <TextView
 
-        <TextView
-            android:id="@+id/txtWoman"
-            android:text="@string/txtwoman"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/imgWoman"
-            app:layout_constraintEnd_toEndOf="@id/imgWoman"
-            app:layout_constraintTop_toBottomOf="@id/imgWoman"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/signcondent"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
-        <TextView
-            android:id="@+id/txtBirthYear"
-            android:text="@string/birth_year"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtNickname"
-            android:layout_marginTop="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/pw"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
-        <Spinner
-            android:id="@+id/spinnerBirthYear"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtBirthYear"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/siginup_edittext_background"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
+                    <EditText
+                        android:id="@+id/edtPw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:hint="@string/pwhint"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="330dp"
+                        android:alpha="0.5"
+                        android:src="@drawable/close_eye_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edtPw"
+                        app:layout_constraintEnd_toEndOf="@id/edtPw"
+                        app:layout_constraintStart_toStartOf="@id/edtPw"
+                        app:layout_constraintTop_toTopOf="@id/edtPw" />
+
+                    <EditText
+                        android:id="@+id/edtRePw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:hint="@string/pwhintre"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtPw" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="330dp"
+                        android:alpha="0.5"
+                        android:src="@drawable/close_eye_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edtRePw"
+                        app:layout_constraintEnd_toEndOf="@id/edtRePw"
+                        app:layout_constraintStart_toStartOf="@id/edtRePw"
+                        app:layout_constraintTop_toTopOf="@id/edtRePw" />
+
+                    <TextView
+                        android:id="@+id/txtNickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/nickname"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtRePw" />
+
+                    <EditText
+                        android:id="@+id/edtNickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:hint="@string/nickname_hint"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toStartOf="@id/imgMan"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtNickname" />
+
+                    <ImageView
+                        android:id="@+id/imgMan"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:alpha="0.5"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:src="@drawable/man_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edtNickname"
+                        app:layout_constraintEnd_toStartOf="@id/imgWoman"
+                        app:layout_constraintStart_toEndOf="@id/edtNickname"
+                        app:layout_constraintTop_toTopOf="@id/edtNickname" />
+
+                    <ImageView
+                        android:id="@+id/imgWoman"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:alpha="0.5"
+                        android:background="@drawable/siginup_edittext_background"
+                        android:src="@drawable/woman_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/imgMan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgMan"
+                        app:layout_constraintTop_toTopOf="@id/imgMan" />
+
+                    <TextView
+                        android:id="@+id/txtGender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/txtgender"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toTopOf="@id/imgMan"
+                        app:layout_constraintStart_toStartOf="@id/imgMan" />
+
+                    <TextView
+                        android:id="@+id/txtMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/txtman"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="@id/imgMan"
+                        app:layout_constraintStart_toStartOf="@id/imgMan"
+                        app:layout_constraintTop_toBottomOf="@id/imgMan" />
+
+                    <TextView
+                        android:id="@+id/txtWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/txtwoman"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="@id/imgWoman"
+                        app:layout_constraintStart_toStartOf="@id/imgWoman"
+                        app:layout_constraintTop_toBottomOf="@id/imgWoman" />
+
+                    <TextView
+                        android:id="@+id/txtBirthYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:text="@string/birth_year"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edtNickname" />
+
+                    <Spinner
+                        android:id="@+id/spinnerBirthYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtBirthYear" />
+
+                    <TextView
+                        android:id="@+id/txtMyArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="나의 지역"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/spinnerBirthYear" />
+
+                    <Spinner
+                        android:id="@+id/spinnerArea"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtMyArea" />
+
+                    <TextView
+                        android:id="@+id/txtSpouseArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="배우자 희망 지역"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/spinnerArea" />
+
+                    <Spinner
+                        android:id="@+id/spinnerSpouseArea"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtSpouseArea" />
+
+                    <CheckBox
+                        android:id="@+id/signupCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@id/txtTermsOfUse"
+                        app:layout_constraintEnd_toStartOf="@id/txtTermsOfUse"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtTermsOfUse" />
+
+                    <TextView
+                        android:id="@+id/txtTermsOfUse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="약관 및 개인정보 보호 정책에 동의합니다."
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/signupCheckbox"
+                        app:layout_constraintTop_toBottomOf="@id/spinnerSpouseArea" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:text="가입완료"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
