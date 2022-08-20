@@ -3,8 +3,6 @@ package com.modoohealing.modo
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
-import android.text.InputType
-import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -15,7 +13,10 @@ import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.databinding.ActivitySignUpBinding
 
 class SignUpActivity : BaseActivity() {
+
     lateinit var binding: ActivitySignUpBinding
+    private var genderClicked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
@@ -23,7 +24,7 @@ class SignUpActivity : BaseActivity() {
         setValues()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "ResourceAsColor")
     override fun setupEvents() {
 
         btnBack.setOnClickListener {
@@ -37,6 +38,21 @@ class SignUpActivity : BaseActivity() {
                 })
                 .create()
             alert.show()
+        }
+        binding.btnSignUp.setOnClickListener {
+            validation()
+        }
+        binding.imgMan.setOnClickListener {
+            genderClicked = true
+            binding.imgMan.alpha = 1F
+            binding.imgWoman.alpha = 0.4F
+            binding.txtGender.text = "성별"
+        }
+        binding.imgWoman.setOnClickListener {
+            genderClicked = true
+            binding.imgWoman.alpha = 1F
+            binding.imgMan.alpha = 0.4F
+            binding.txtGender.text = "성별"
         }
 
 
@@ -68,11 +84,8 @@ class SignUpActivity : BaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(mContext, "선택아이템 :${position}", Toast.LENGTH_SHORT).show()
-
                 when (position) {
                     0 -> {
-
                     }
                     1 -> {
 
@@ -145,12 +158,12 @@ class SignUpActivity : BaseActivity() {
             }
     }
 
-    fun spinnerArea(){
+    fun spinnerArea() {
         var areaItems = resources.getStringArray(R.array.area)
-        var adapter = ArrayAdapter<String>(mContext,R.layout.signup_custom_item, areaItems)
+        var adapter = ArrayAdapter<String>(mContext, R.layout.signup_custom_item, areaItems)
         binding.spinnerArea.adapter = adapter
 
-        binding.spinnerArea.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+        binding.spinnerArea.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -168,26 +181,64 @@ class SignUpActivity : BaseActivity() {
 
     }
 
-    fun spinnerSpouseArea(){
+    fun spinnerSpouseArea() {
         val items = resources.getStringArray(R.array.spouseArea)
-        var adapter = ArrayAdapter<String>(mContext,R.layout.signup_custom_item, items)
+        var adapter = ArrayAdapter<String>(mContext, R.layout.signup_custom_item, items)
         binding.spinnerSpouseArea.adapter = adapter
 
-        binding.spinnerSpouseArea.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+        binding.spinnerSpouseArea.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
 
             }
+    }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+    @SuppressLint("ResourceAsColor")
+    fun validation() { //유효성 검사
 
-            }
+        val email = binding.edtEmail.text.toString()
+        val pw = binding.edtPw.text.toString()
+        val rePw = binding.edtRePw.text.toString()
+        val nickname = binding.edtNickname.toString()
 
+
+        if (email.isEmpty()) {
+            binding.edtEmail.requestFocus()
+            Toast.makeText(mContext, "이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
         }
+        if (binding.edtPw.length() !in 4..12) {
+            binding.edtPw.requestFocus() //포커스 요청
+            Toast.makeText(mContext, "4~12자 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (rePw != pw) {
+            binding.edtRePw.requestFocus()
+            Toast.makeText(mContext, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (binding.edtNickname.length() !in 2..8) {
+            binding.edtNickname.requestFocus()
+            Toast.makeText(mContext, "2~8자 대화명을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!genderClicked) {
+            binding.txtGender.text = "성별을 입력하세요."
+            binding.imgMan.requestFocus()
+            return
+        }
+
     }
 }
 

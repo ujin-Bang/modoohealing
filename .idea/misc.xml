@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/katalk_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/naver_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/siginup_edittext_background.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/siginup_edittext_error_background.xml" value="0.157" />
         <entry key="app/src/main/res/drawable/signup_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2796875" />
