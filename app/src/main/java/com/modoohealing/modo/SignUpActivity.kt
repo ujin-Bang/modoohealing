@@ -16,6 +16,7 @@ class SignUpActivity : BaseActivity() {
 
     lateinit var binding: ActivitySignUpBinding
     private var genderClicked = false
+    private var emailChecked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -211,11 +212,20 @@ class SignUpActivity : BaseActivity() {
         val pw = binding.edtPw.text.toString()
         val rePw = binding.edtRePw.text.toString()
         val nickname = binding.edtNickname.toString()
-
+        val selectedEmailCompany = binding.spinnerSignup.selectedItem.toString()
+        val selectedBirthYear = binding.spinnerBirthYear.selectedItem.toString()
+        val selectedMyArea = binding.spinnerArea.selectedItem.toString()
+        val selectedSpouseArea = binding.spinnerSpouseArea.selectedItem.toString()
+        val checkedTermsOfUse = binding.signupCheckbox.isChecked
 
         if (email.isEmpty()) {
             binding.edtEmail.requestFocus()
             Toast.makeText(mContext, "이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if(selectedEmailCompany.contains("직접") && binding.edtDirectInput.length() == 0 ){
+            binding.edtDirectInput.requestFocus()
+            Toast.makeText(mContext, "이메일 주소를 선택하세요.", Toast.LENGTH_SHORT).show()
             return
         }
         if (binding.edtPw.length() !in 4..12) {
@@ -234,11 +244,36 @@ class SignUpActivity : BaseActivity() {
             return
         }
         if (!genderClicked) {
-            binding.txtGender.text = "성별을 입력하세요."
+            binding.txtGender.text = "성별을 선택하세요."
             binding.imgMan.requestFocus()
+            Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if(selectedBirthYear.contains("태어난")){
+            binding.spinnerBirthYear.requestFocus()
+            Toast.makeText(mContext, "태어난 연도를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (selectedMyArea.contains("현재")){
+            binding.spinnerArea.requestFocus()
+            Toast.makeText(mContext, "현재 거주지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (selectedSpouseArea.contains("배우자")){
+            binding.spinnerSpouseArea.requestFocus()
+            Toast.makeText(mContext, "배우자 희망지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!checkedTermsOfUse){
+            binding.signupCheckbox.requestFocus()
+            Toast.makeText(mContext, "이용약관에 동의해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
 
     }
+    
 }
+    
+
+
 
