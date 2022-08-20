@@ -111,53 +111,50 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
-                    <EditText
-                        android:id="@+id/edtPw"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edtPwLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true"
                         android:layout_marginTop="60dp"
-                        android:background="@drawable/siginup_edittext_background"
-                        android:hint="@string/pwhint"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="330dp"
-                        android:alpha="0.5"
-                        android:src="@drawable/close_eye_icon"
-                        app:layout_constraintBottom_toBottomOf="@id/edtPw"
-                        app:layout_constraintEnd_toEndOf="@id/edtPw"
-                        app:layout_constraintStart_toStartOf="@id/edtPw"
-                        app:layout_constraintTop_toTopOf="@id/edtPw" />
+                        <EditText
+                            android:id="@+id/edtPw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:maxLength="12"
+                            android:hint="영어와 숫자로 조합가능(4~12자)"
+                            android:background="@drawable/siginup_edittext_background"
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtRePw"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edtRePwLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
+                        android:layout_marginTop="10dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:background="@drawable/siginup_edittext_background"
-                        android:hint="@string/pwhintre"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
+                        app:passwordToggleEnabled="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/edtPw" />
+                        app:layout_constraintTop_toBottomOf="@id/edtPwLayout">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="330dp"
-                        android:alpha="0.5"
-                        android:src="@drawable/close_eye_icon"
-                        app:layout_constraintBottom_toBottomOf="@id/edtRePw"
-                        app:layout_constraintEnd_toEndOf="@id/edtRePw"
-                        app:layout_constraintStart_toStartOf="@id/edtRePw"
-                        app:layout_constraintTop_toTopOf="@id/edtRePw" />
+                        <EditText
+                            android:id="@+id/edtRePw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:hint="비밀번호를 재입력해주세요."
+                            android:background="@drawable/siginup_edittext_background"
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
                     <TextView
                         android:id="@+id/txtNickname"
@@ -167,7 +164,7 @@
                         android:text="@string/nickname"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/edtRePw" />
+                        app:layout_constraintTop_toBottomOf="@id/edtRePwLayout" />
 
                     <EditText
                         android:id="@+id/edtNickname"

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Modoohealing" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/teal_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -19,4 +19,17 @@
     </style>
     <style name="Theme.Modoohealing.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Modoohealing.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="EditTextGreyStyle" parent="Widget.Design.TextInputLayout"> // important : parent 를 이것으로.
+
+
+        <item name="hintTextColor">#3E3E3E</item>   // floating hint 색
+
+        <item name="helperText">#FA4D3B</item> // xml 에서 한 속성을 여기서도 할 수 있습니다.
+        <item name="helperTextTextColor">#FA4D3B</item>
+
+        <item name="errorTextColor">#FA4D3B</item>
+
+    </style>
 </resources>

@@ -3,7 +3,8 @@ package com.modoohealing.modo
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
+import android.text.InputType
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -22,6 +23,7 @@ class SignUpActivity : BaseActivity() {
         setValues()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun setupEvents() {
 
         btnBack.setOnClickListener {
@@ -36,6 +38,7 @@ class SignUpActivity : BaseActivity() {
                 .create()
             alert.show()
         }
+
 
         spinnerEmail()
         spinnerBirthYear()
