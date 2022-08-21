@@ -1,16 +1,20 @@
 package com.modoohealing.modo
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.databinding.ActivitySignUpBinding
+import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity() {
 
@@ -48,12 +52,19 @@ class SignUpActivity : BaseActivity() {
             binding.imgMan.alpha = 1F
             binding.imgWoman.alpha = 0.4F
             binding.txtGender.text = "성별"
+            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.blue))
+            binding.txtWoman.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))//텍스트뷰 텍스트색 변경
+
         }
         binding.imgWoman.setOnClickListener {
             genderClicked = true
             binding.imgWoman.alpha = 1F
             binding.imgMan.alpha = 0.4F
             binding.txtGender.text = "성별"
+            binding.txtWoman.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))//텍스트뷰 텍스트색변경
         }
 
 
@@ -211,7 +222,7 @@ class SignUpActivity : BaseActivity() {
         val email = binding.edtEmail.text.toString()
         val pw = binding.edtPw.text.toString()
         val rePw = binding.edtRePw.text.toString()
-        val nickname = binding.edtNickname.toString()
+        val nickname = binding.edtNickname.text.toString()
         val selectedEmailCompany = binding.spinnerSignup.selectedItem.toString()
         val selectedBirthYear = binding.spinnerBirthYear.selectedItem.toString()
         val selectedMyArea = binding.spinnerArea.selectedItem.toString()
@@ -223,14 +234,14 @@ class SignUpActivity : BaseActivity() {
             Toast.makeText(mContext, "이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
-        if(selectedEmailCompany.contains("직접") && binding.edtDirectInput.length() == 0 ){
+        if (selectedEmailCompany.contains("직접") && (binding.edtDirectInput.length() == 0)) {
             binding.edtDirectInput.requestFocus()
             Toast.makeText(mContext, "이메일 주소를 선택하세요.", Toast.LENGTH_SHORT).show()
             return
         }
-        if (binding.edtPw.length() !in 4..12) {
+        if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$",pw)) { //영어 숫자(길이:6~12)가 아니면 실행
             binding.edtPw.requestFocus() //포커스 요청
-            Toast.makeText(mContext, "4~12자 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext, "영어 숫자조합 6~12자로 입력해주세요..", Toast.LENGTH_SHORT).show()
             return
         }
         if (rePw != pw) {
@@ -238,13 +249,15 @@ class SignUpActivity : BaseActivity() {
             Toast.makeText(mContext, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
             return
         }
-        if (binding.edtNickname.length() !in 2..8) {
+
+        if (!Pattern.matches("^(?=.*[ㄱ-ㅎ가-힣])(?=.*[0-9])[ㄱ-ㅎ가-힣[0-9]]{2,8}$",nickname)){ //한글 숫자(길이: 2~8)이 아니면 실행
             binding.edtNickname.requestFocus()
-            Toast.makeText(mContext, "2~8자 대화명을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext, "2~8자 한글 숫자조합으로된 대화명을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
         if (!genderClicked) {
             binding.txtGender.text = "성별을 선택하세요."
+            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error)) //텍스트뷰컬러 바꾸기
             binding.imgMan.requestFocus()
             Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show()
             return
@@ -271,7 +284,28 @@ class SignUpActivity : BaseActivity() {
         }
 
     }
-    
+
+    //자주 사용하는 유효성 검사 정규식-----------
+//    private fun isRegularPW(password: String): Boolean {
+//        val pwPattern1 =
+//            "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{8,20}$" // 영문, 숫자 8~20글자
+//        val pwPattern2 =
+//            "^(?=.*[0-9])(?=.*[$@$!%*#?&.])[[0-9]$@$!%*#?&.]{8,20}$" // 숫자, 특수문자
+//        val pwPattern3 =
+//            "^(?=.*[A-Za-z])(?=.*[$@$!%*#?&.])[A-Za-z$@$!%*#?&.]{8,20}$" // 영문, 특수문자
+//        val pwPattern4 =
+//            "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$" // 영문, 숫자, 특수문자
+//
+//        val pattern = Pattern.compile(pwPattern1)
+//        val matcher = pattern.matcher(pwPattern1)
+//        Log.d("Match", matcher.find().toString())
+//
+//        return (Pattern.matches(pwPattern1, password) ||
+//                Pattern.matches(pwPattern2, password) ||
+//                Pattern.matches(pwPattern3, password) ||
+//                Pattern.matches(pwPattern4, password))
+//    }
+//
 }
     
 

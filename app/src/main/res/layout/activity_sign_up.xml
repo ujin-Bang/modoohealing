@@ -22,8 +22,8 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scrollbars="none"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:scrollbars="none">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,35 +44,37 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/siginup_edittext_background"
+                        android:background="@drawable/focus_background"
                         android:hint=" 이메일"
                         android:inputType="text"
                         android:lines="1"
                         android:padding="10dp"
+                        app:layout_constraintEnd_toStartOf="@id/imgEmail"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txtEmail"
-                        app:layout_constraintWidth_percent="0.45"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
                         tools:ignore="TextFields" />
 
                     <ImageView
                         android:id="@+id/imgEmail"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:padding="5dp"
                         android:alpha="0.7"
                         android:src="@drawable/email_icon"
                         app:layout_constraintBottom_toBottomOf="@id/edtEmail"
+                        app:layout_constraintEnd_toStartOf="@id/spinnerSignup"
                         app:layout_constraintStart_toEndOf="@id/edtEmail"
                         app:layout_constraintTop_toTopOf="@id/edtEmail" />
 
                     <Spinner
                         android:id="@+id/spinnerSignup"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="@id/edtEmail"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgEmail"
-                        app:layout_constraintTop_toTopOf="@id/edtEmail"
-                        app:layout_constraintWidth_percent="0.45" />
+                        app:layout_constraintTop_toTopOf="@id/edtEmail"/>
 
                     <EditText
                         android:id="@+id/edtDirectInput"
@@ -116,44 +118,44 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        app:passwordToggleEnabled="true"
                         android:layout_marginTop="60dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/edtEmail">
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+                        app:passwordToggleEnabled="true">
 
                         <EditText
                             android:id="@+id/edtPw"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:background="@drawable/focus_background"
+                            android:hint="영어와 숫자로 조합가능(6~12자)"
+                            android:textColorHint="@color/error"
+                            android:inputType="textPassword"
                             android:maxLength="12"
-                            android:hint="영어와 숫자로 조합가능(4~12자)"
-                            android:background="@drawable/siginup_edittext_background"
-                            android:inputType="textPassword" />
+                            android:padding="10dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/edtRePwLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
-                        android:layout_marginTop="10dp"
                         android:layout_height="wrap_content"
-                        app:passwordToggleEnabled="true"
+                        android:layout_marginTop="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/edtPwLayout">
+                        app:layout_constraintTop_toBottomOf="@id/edtPwLayout"
+                        app:passwordToggleEnabled="true">
 
                         <EditText
                             android:id="@+id/edtRePw"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:background="@drawable/focus_background"
                             android:hint="비밀번호를 재입력해주세요."
-                            android:background="@drawable/siginup_edittext_background"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:padding="10dp" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
 
                     <TextView
@@ -171,7 +173,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/siginup_edittext_background"
+                        android:background="@drawable/focus_background"
                         android:hint="@string/nickname_hint"
                         android:inputType="text"
                         android:maxLength="12"
@@ -197,6 +199,7 @@
                         android:id="@+id/imgWoman"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
+                        android:padding="3dp"
                         android:alpha="0.4"
                         android:background="@drawable/siginup_edittext_background"
                         android:src="@drawable/woman_icon"
@@ -321,6 +324,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </ScrollView>
+
             <Button
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"

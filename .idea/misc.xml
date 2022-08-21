@@ -5,6 +5,7 @@
       <map>
         <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.19375" />
         <entry key="app/src/main/res/drawable/email_button_background.xml" value="0.117" />
+        <entry key="app/src/main/res/drawable/focus_background.xml" value="0.1125" />
         <entry key="app/src/main/res/drawable/google_button_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/google_login_background.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/katalk_button_background.xml" value="0.117" />
