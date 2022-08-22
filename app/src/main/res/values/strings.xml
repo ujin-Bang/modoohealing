@@ -28,6 +28,8 @@
     <string name="txtman">남성</string>
     <string name="txtwoman">여성</string>
     <string name="birth_year">태어난 연도</string>
+    <string name="txtEmailErrorMsg">이메일주소를 입력해주세요.</string>
+    <string name="txtNicknameErrorMSG">한글 숫자 조합 2~8자로된 대화명을 입력해주세요.</string>
 
 
 </resources>
