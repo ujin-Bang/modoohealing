@@ -1,6 +1,7 @@
 package com.modoohealing.modo
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -17,27 +19,30 @@ import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.databinding.ActivitySignUpBinding
 import java.util.regex.Pattern
 
-class SignUpActivity : BaseActivity() {
+class SignUpActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySignUpBinding
     private var genderClicked = false
     private var selectedBirthYear =""
     private var selectedMyArea= ""
     private var selectedSpouseArea = ""
+    lateinit var mContext: Context
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        mContext = this
         setupEvents()
         setValues()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ClickableViewAccessibility", "ResourceAsColor")
-    override fun setupEvents() {
+    fun setupEvents() {
 
-        btnBack.setOnClickListener {
-            val alert = AlertDialog.Builder(mContext)
+        binding.btnBack.setOnClickListener {
+            AlertDialog.Builder(mContext)
                 .setTitle("회원가입을 종료하시겠습니까?")
                 .setPositiveButton("종료", DialogInterface.OnClickListener { _, _ ->
                     finish()
@@ -46,7 +51,7 @@ class SignUpActivity : BaseActivity() {
                     return@OnClickListener
                 })
                 .create()
-            alert.show()
+            .show()
         }
         binding.btnSignUp.setOnClickListener {
             validation()
@@ -80,9 +85,7 @@ class SignUpActivity : BaseActivity() {
         spinnerSpouseArea()
     }
 
-    override fun setValues() {
-        txtMainName.isVisible = false
-        layoutSignup.isVisible = true
+    fun setValues() {
 
 
     }
