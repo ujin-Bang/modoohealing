@@ -1,6 +1,7 @@
 package com.modoohealing.modo
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -17,27 +19,30 @@ import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.databinding.ActivitySignUpBinding
 import java.util.regex.Pattern
 
-class SignUpActivity : BaseActivity() {
+class SignUpActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySignUpBinding
     private var genderClicked = false
-    private var selectedBirthYear =""
-    private var selectedMyArea= ""
+    private var selectedBirthYear = ""
+    private var selectedMyArea = ""
     private var selectedSpouseArea = ""
+    private lateinit var mContext: Context
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        mContext = this
         setupEvents()
         setValues()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ClickableViewAccessibility", "ResourceAsColor")
-    override fun setupEvents() {
+    fun setupEvents() {
 
-        btnBack.setOnClickListener {
-            val alert = AlertDialog.Builder(mContext)
+        binding.btnBack.setOnClickListener {
+            AlertDialog.Builder(mContext)
                 .setTitle("회원가입을 종료하시겠습니까?")
                 .setPositiveButton("종료", DialogInterface.OnClickListener { _, _ ->
                     finish()
@@ -46,7 +51,7 @@ class SignUpActivity : BaseActivity() {
                     return@OnClickListener
                 })
                 .create()
-            alert.show()
+                .show()
         }
         binding.btnSignUp.setOnClickListener {
             validation()
@@ -57,9 +62,19 @@ class SignUpActivity : BaseActivity() {
             binding.imgWoman.alpha = 0.4F
             binding.txtGender.text = "성별"
             binding.edtNickname.clearFocus()
-            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.blue))
-            binding.txtWoman.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
-            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))//텍스트뷰 텍스트색 변경
+            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.blue))
+            binding.txtWoman.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.black
+                )
+            )
+            binding.txtGender.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.black
+                )
+            )//텍스트뷰 텍스트색 변경
 
         }
         binding.imgWoman.setOnClickListener {
@@ -68,9 +83,19 @@ class SignUpActivity : BaseActivity() {
             binding.imgMan.alpha = 0.4F
             binding.txtGender.text = "성별"
             binding.edtNickname.clearFocus()
-            binding.txtWoman.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
-            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
-            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))//텍스트뷰 텍스트색변경
+            binding.txtWoman.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
+            binding.txtMan.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.black))
+            binding.txtGender.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.black
+                )
+            )//텍스트뷰 텍스트색변경
         }
 
 
@@ -78,12 +103,10 @@ class SignUpActivity : BaseActivity() {
         spinnerBirthYear()
         spinnerArea()
         spinnerSpouseArea()
+        chekBoxChecked()
     }
 
-    override fun setValues() {
-        txtMainName.isVisible = false
-        layoutSignup.isVisible = true
-
+    fun setValues() {
 
     }
 
@@ -153,7 +176,12 @@ class SignUpActivity : BaseActivity() {
                         in 1..10 -> {
 
                             binding.txtBirthYear.text = "태어난 연도"
-                            binding.txtBirthYear.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+                            binding.txtBirthYear.setTextColor(
+                                ContextCompat.getColor(
+                                    applicationContext!!,
+                                    R.color.black
+                                )
+                            )
                             binding.txtSpinnerError.visibility = View.GONE
                             binding.edtNickname.clearFocus()
                         }
@@ -193,13 +221,18 @@ class SignUpActivity : BaseActivity() {
                 id: Long
             ) {
 
-                when(position){
-                    0 ->{
+                when (position) {
+                    0 -> {
 
                     }
                     in 1..10 -> {
                         binding.txtMyArea.text = "나의 지역"
-                        binding.txtMyArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+                        binding.txtMyArea.setTextColor(
+                            ContextCompat.getColor(
+                                applicationContext!!,
+                                R.color.black
+                            )
+                        )
                         binding.txtSpinnerErrorArea.isVisible = false
                     }
                 }
@@ -227,11 +260,16 @@ class SignUpActivity : BaseActivity() {
                     id: Long
                 ) {
 
-                    when(position){
-                        in 1..10 ->{
+                    when (position) {
+                        in 1..10 -> {
                             binding.txtSpinnerErrorSpouseArea.visibility = View.GONE
                             binding.txtSpouseArea.text = "배우자 희망지역"
-                            binding.txtSpouseArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+                            binding.txtSpouseArea.setTextColor(
+                                ContextCompat.getColor(
+                                    applicationContext!!,
+                                    R.color.black
+                                )
+                            )
                         }
                     }
                 }
@@ -252,47 +290,60 @@ class SignUpActivity : BaseActivity() {
         val nickname = binding.edtNickname.text.toString()
         val edtEmailCompany = binding.edtDirectInput.text.toString()
         val selectedEmailCompany = binding.spinnerSignup.selectedItem.toString()
-         selectedBirthYear = binding.spinnerBirthYear.selectedItem.toString()
-         selectedMyArea = binding.spinnerArea.selectedItem.toString()
-         selectedSpouseArea = binding.spinnerSpouseArea.selectedItem.toString()
+        selectedBirthYear = binding.spinnerBirthYear.selectedItem.toString()
+        selectedMyArea = binding.spinnerArea.selectedItem.toString()
+        selectedSpouseArea = binding.spinnerSpouseArea.selectedItem.toString()
         val checkedTermsOfUse = binding.signupCheckbox.isChecked
 
         //이메일
         if (email.isEmpty()) {
             binding.edtEmail.requestFocus()
             binding.txtEmail2.text = "이메일을 입력해 주세요."
-            binding.txtEmail2.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtEmail2.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
 
             binding.edtEmail.addTextChangedListener {
                 if (it.toString().isNotEmpty()) {
                     binding.txtEmail2.setText(R.string.signcondent)
-                    binding.txtEmail2.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+                    binding.txtEmail2.setTextColor(
+                        ContextCompat.getColor(
+                            applicationContext!!,
+                            R.color.black
+                        )
+                    )
                 }
             }
             return
         }
         //이메일 @ 뒷주소
-        if (selectedEmailCompany.contains("직접") && (edtEmailCompany.isEmpty()) ){
+        if (selectedEmailCompany.contains("직접") && (edtEmailCompany.isEmpty())) {
             binding.edtDirectInput.requestFocus()
             binding.txtErrorEmailMsg.isVisible = true
             binding.edtDirectInput.addTextChangedListener {
                 val content = it.toString()
-                if (content.isNotEmpty()){
+                if (content.isNotEmpty()) {
                     binding.txtErrorEmailMsg.isVisible = false
                 }
             }
             return
         }
         //비밀번호
-        if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$",pw)) { //영어 숫자(길이:6~12)가 아니면 실행
+        if (!Pattern.matches(
+                "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$",
+                pw
+            )
+        ) { //영어 숫자(길이:6~12)가 아니면 실행
             binding.edtPw.requestFocus() //포커스 요청
             binding.txtPwErrorMSG.visibility = View.VISIBLE
             binding.edtPw.addTextChangedListener {
                 val pwContent = it.toString()
-                if (Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$",pwContent)){
+                if (Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,12}$", pwContent)) {
                     binding.txtPwErrorMSG.visibility = View.GONE
-                }
-                else{
+                } else {
                     binding.txtPwErrorMSG.visibility = View.VISIBLE
 
                 }
@@ -304,32 +355,48 @@ class SignUpActivity : BaseActivity() {
         if (rePw != pw) {
             binding.edtRePw.requestFocus()
             binding.txtReErrorMSG.text = "비밀번호를 재입력해주세요."
-            binding.txtReErrorMSG.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtReErrorMSG.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
 
             binding.edtRePw.addTextChangedListener {
                 val rePw2 = it.toString()
-                if(pw == rePw2){
+                if (pw == rePw2) {
                     binding.txtReErrorMSG.text = ""
-                }
-                else{
+                } else {
                     binding.txtReErrorMSG.text = "입력하신 비밀번호가 같지 않습니다."
-                    binding.txtReErrorMSG.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+                    binding.txtReErrorMSG.setTextColor(
+                        ContextCompat.getColor(
+                            applicationContext!!,
+                            R.color.error
+                        )
+                    )
                 }
             }
             return
         }
 
         //대화명
-        if (!Pattern.matches("^(?=.*[ㄱ-ㅎ가-힣])(?=.*[0-9])[ㄱ-ㅎ가-힣[0-9]]{2,8}$",nickname)){ //한글 숫자(길이: 2~8)이 아니면 실행
+        if (!Pattern.matches(
+                "^(?=.*[ㄱ-ㅎ가-힣])(?=.*[0-9])[ㄱ-ㅎ가-힣[0-9]]{2,8}$",
+                nickname
+            )
+        ) { //한글 숫자(길이: 2~8)이 아니면 실행
             binding.edtNickname.requestFocus()
             binding.txtNicnameErrorMSG.visibility = View.VISIBLE
 
             binding.edtNickname.addTextChangedListener {
                 val edtNickname2 = it.toString()
-                if (Pattern.matches("^(?=.*[ㄱ-ㅎ가-힣])(?=.*[0-9])[ㄱ-ㅎ가-힣[0-9]]{2,8}$",edtNickname2)){
+                if (Pattern.matches(
+                        "^(?=.*[ㄱ-ㅎ가-힣])(?=.*[0-9])[ㄱ-ㅎ가-힣[0-9]]{2,8}$",
+                        edtNickname2
+                    )
+                ) {
                     binding.txtNicnameErrorMSG.visibility = View.GONE
-                }
-                else {
+                } else {
                     binding.txtNicnameErrorMSG.visibility = View.VISIBLE
 
                 }
@@ -339,66 +406,111 @@ class SignUpActivity : BaseActivity() {
         //성별
         if (!genderClicked) {
             binding.txtGender.text = "성별을 선택하세요."
-            binding.txtGender.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error)) //텍스트뷰컬러 바꾸기
+            binding.txtGender.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            ) //텍스트뷰컬러 바꾸기
             binding.imgMan.requestFocus()
             return
         }
         //태어난 연도
-        if(selectedBirthResult()){
+        if (selectedBirthResult()) {
 
             return
-            }
+        }
         //나의 지역 선택
-        if (selectedAreaResult()){
+        if (selectedAreaResult()) {
             return
         }
 
         //배우자 희망 지역
-        if (selectedSpouseArea.contains("배우자")){
+        if (selectedSpouseArea.contains("배우자")) {
             binding.txtSpinnerErrorSpouseArea.visibility = View.VISIBLE
             binding.txtSpouseArea.text = "배우자 희망지역을 선택해주세요."
-            binding.txtSpouseArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtSpouseArea.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
             return
         }
-        if (!checkedTermsOfUse){
-            Toast.makeText(mContext, "이용약관에 동의해주세요.", Toast.LENGTH_SHORT).show()
+        //이용약관
+        if (!checkedTermsOfUse) {
+            binding.txtTermsOfUseErrorMSG.visibility = View.VISIBLE
             return
         }
+
 
     }
 
     //연도 선택함수
-    fun selectedBirthResult(): Boolean{
+    fun selectedBirthResult(): Boolean {
         return if (selectedBirthYear.contains("태어난")) {
             binding.txtSpinnerError.visibility = View.VISIBLE
             binding.txtBirthYear.text = "연도를 선택해주세요"
-            binding.txtBirthYear.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtBirthYear.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
 
             true
-        } else{
-            binding.txtSpinnerError.visibility= View.GONE
+        } else {
+            binding.txtSpinnerError.visibility = View.GONE
             binding.txtBirthYear.text = "태어난 연도"
-            binding.txtBirthYear.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+            binding.txtBirthYear.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.black
+                )
+            )
             false
         }
     }
+
     //나의 지역함수
-    fun selectedAreaResult(): Boolean{
+    fun selectedAreaResult(): Boolean {
         return if (selectedMyArea.contains("현재")) {
             binding.txtSpinnerErrorArea.visibility = View.VISIBLE
             binding.txtMyArea.text = "현재 거주지역을 선택해주세요"
-            binding.txtMyArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
+            binding.txtMyArea.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.error
+                )
+            )
 
             true
-        } else{
-            binding.txtSpinnerErrorArea.visibility= View.GONE
+        } else {
+            binding.txtSpinnerErrorArea.visibility = View.GONE
             binding.txtMyArea.text = "나의 지역"
-            binding.txtMyArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
+            binding.txtMyArea.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext!!,
+                    R.color.black
+                )
+            )
             false
         }
     }
 
+    //체크박스 바뀔때 실행하는 함수.
+    fun chekBoxChecked() {
 
+        binding.signupCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+
+            if (isChecked)
+                binding.txtTermsOfUseErrorMSG.visibility = View.GONE
+            else
+                binding.txtTermsOfUseErrorMSG.visibility = View.VISIBLE
+        }
+
+
+    }
 
 
     //자주 사용하는 유효성 검사 정규식-----------
