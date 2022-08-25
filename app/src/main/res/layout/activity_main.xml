@@ -7,18 +7,28 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-<TextView
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:id="@+id/txtMain"
-    android:gravity="center"
-    android:text="메인화면입니다."
-    android:textSize="50dp"
-    android:textColor="@color/black"
-    android:layout_width="0dp"
-    android:layout_height="0dp"/>
+        <FrameLayout
+            android:id="@+id/mainFragmentContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/mainBottomNaivigation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/mainBottomNaivigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            app:itemIconTint="@drawable/bottom_navi_selector"
+            app:itemTextColor="@drawable/bottom_navi_selector"
+            app:itemRippleColor="@null"
+            app:menu="@menu/bottom_navigation"
+            app:labelVisibilityMode="labeled"
+            android:layout_height="wrap_content"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

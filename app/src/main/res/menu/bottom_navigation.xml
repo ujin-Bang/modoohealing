@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/txt_bottom_home_title"
+        android:icon="@drawable/home_icon"/>
+
+    <item
+        android:id="@+id/users"
+        android:title="@string/txt_bottom_users_title"
+        android:icon="@drawable/users_icon"/>
+
+    <item
+        android:id="@+id/myPage"
+        android:title="@string/bottom_mypage_title"
+        android:icon="@drawable/my_page_icon"/>
+
+    <item
+        android:id="@+id/seeMore"
+        android:title="더보기"
+        android:icon="@drawable/see_more_icon"/>
+
+</menu>

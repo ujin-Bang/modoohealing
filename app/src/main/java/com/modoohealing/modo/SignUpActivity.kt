@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.ViewBindingAdapter
 import com.modoohealing.modo.databinding.ActivitySignUpBinding
 import java.util.regex.Pattern
 
@@ -83,6 +84,7 @@ class SignUpActivity : AppCompatActivity() {
         spinnerBirthYear()
         spinnerArea()
         spinnerSpouseArea()
+        termOfUserCheck()
     }
 
     fun setValues() {
@@ -363,8 +365,10 @@ class SignUpActivity : AppCompatActivity() {
             binding.txtSpouseArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.error))
             return
         }
+
+//        이용약관 동의첵크
         if (!checkedTermsOfUse){
-            Toast.makeText(mContext, "이용약관에 동의해주세요.", Toast.LENGTH_SHORT).show()
+            binding.txtTermsOfUseErrorMSG.visibility = View.VISIBLE
             return
         }
 
@@ -398,6 +402,16 @@ class SignUpActivity : AppCompatActivity() {
             binding.txtMyArea.text = "나의 지역"
             binding.txtMyArea.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
             false
+        }
+    }
+
+    //이용약관 동의 첵크함수
+    fun termOfUserCheck(){
+        binding.signupCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            when(isChecked){
+                true -> binding.txtTermsOfUseErrorMSG.visibility = View.GONE
+                else -> binding.txtTermsOfUseErrorMSG.visibility = View.VISIBLE
+            }
         }
     }
 
