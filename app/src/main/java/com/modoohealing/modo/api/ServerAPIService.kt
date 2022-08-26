@@ -5,7 +5,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface ServerAPIService {
-    //로그인 하는 기능 명세가
+    //로그인 하는 기능 명세
     @FormUrlEncoded
     @POST("/user")
     fun postRequestLogin(

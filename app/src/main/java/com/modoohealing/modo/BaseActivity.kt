@@ -7,6 +7,8 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
+import com.modoohealing.modo.api.ServerAPI
+import com.modoohealing.modo.api.ServerAPIService
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -16,10 +18,14 @@ abstract class BaseActivity : AppCompatActivity() {
     private lateinit var txtSignup: TextView
     lateinit var layoutSignup: LinearLayout
 
+    lateinit var apiService: ServerAPIService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mContext = this
+        val retrofit = ServerAPI.getRetrofit()
+        apiService = retrofit.create(ServerAPIService::class.java)
 
         //액션바가 있는 화면에서만 커스텀액션바 실행.
         supportActionBar?.let {

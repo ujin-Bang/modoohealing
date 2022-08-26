@@ -44,7 +44,9 @@ class EmailLoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
             //todo 서버호출
+            apiService.postRequestLogin(email,pw)
         }
+
 
     }
 
