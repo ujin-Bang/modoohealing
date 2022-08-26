@@ -1,25 +1,24 @@
-package com.modoohealing.modo.bottommypage
+package com.modoohealing.modo.bottomnavigationitems
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.modoohealing.modo.BaseFragment
 import com.modoohealing.modo.R
-import com.modoohealing.modo.databinding.FragmentMyPageBinding
+import com.modoohealing.modo.databinding.FragmentSeeMoreBinding
 
-class MyPageFragment: BaseFragment() {
+class SeeMoreFragment:BaseFragment() {
 
-    lateinit var binding: FragmentMyPageBinding
+lateinit var binding: FragmentSeeMoreBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_page, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_see_more, container, false)
         return binding.root
     }
 

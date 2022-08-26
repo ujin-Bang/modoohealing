@@ -1,4 +1,4 @@
-package com.modoohealing.modo.bottomusers
+package com.modoohealing.modo.bottomnavigationitems
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,22 +8,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.modoohealing.modo.BaseFragment
 import com.modoohealing.modo.R
-import com.modoohealing.modo.databinding.FragmentUsersBinding
+import com.modoohealing.modo.databinding.FragmentMyPageBinding
 
-class UsersFragment: BaseFragment() {
+class MyPageFragment: BaseFragment() {
 
-    lateinit var binding: FragmentUsersBinding
+    lateinit var binding: FragmentMyPageBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_users, container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_page, container, false)
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupEvents()
+        setValues()
+    }
+
     override fun setupEvents() {
+
     }
 
     override fun setValues() {

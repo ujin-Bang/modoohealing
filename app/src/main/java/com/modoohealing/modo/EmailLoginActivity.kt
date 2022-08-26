@@ -1,14 +1,21 @@
 package com.modoohealing.modo
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.databinding.ActivityEmailLoginBinding
+import com.modoohealing.modo.datamodel.BasicResponse
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class EmailLoginActivity : BaseActivity() {
@@ -44,7 +51,39 @@ class EmailLoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
             //todo 서버호출
-            apiService.postRequestLogin(email,pw)
+            apiService.postRequestLogin(email,pw).enqueue(object : Callback<BasicResponse>{
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+                    if (response.isSuccessful){
+                        val basicRespones = response.body()
+
+                        if (basicRespones != null){
+
+                            Log.d("코드값 + 메시지","코드값: ${basicRespones.code}, 메시지: ${basicRespones.message}")
+                            Toast.makeText(mContext, "코드값: ${basicRespones.code}, 메시지: ${basicRespones.message}", Toast.LENGTH_SHORT).show()
+
+                        }
+                        else{
+                            val errorJson= JSONObject(response.errorBody()!!.string())
+                            Log.d("에러인 경우", errorJson.toString())
+
+                            val message = errorJson.getString("message")
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+
+
+                  }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                    Log.d("서버접속실패 :", t.toString())
+                }
+
+            })
         }
 
 

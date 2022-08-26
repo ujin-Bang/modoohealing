@@ -3,10 +3,10 @@ package com.modoohealing.modo
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.modoohealing.modo.bottomhome.HomeFragment
-import com.modoohealing.modo.bottommore.SeeMoreFragment
-import com.modoohealing.modo.bottommypage.MyPageFragment
-import com.modoohealing.modo.bottomusers.UsersFragment
+import com.modoohealing.modo.bottomnavigationitems.HomeFragment
+import com.modoohealing.modo.bottomnavigationitems.SeeMoreFragment
+import com.modoohealing.modo.bottomnavigationitems.MyPageFragment
+import com.modoohealing.modo.bottomnavigationitems.UsersFragment
 import com.modoohealing.modo.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {

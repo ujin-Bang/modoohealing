@@ -1,4 +1,4 @@
-package com.modoohealing.modo.bottommore
+package com.modoohealing.modo.bottomnavigationitems
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,18 +7,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.modoohealing.modo.BaseFragment
 import com.modoohealing.modo.R
-import com.modoohealing.modo.databinding.FragmentSeeMoreBinding
+import com.modoohealing.modo.databinding.FragmentHomeBinding
 
-class SeeMoreFragment:BaseFragment() {
+class HomeFragment: BaseFragment() {
 
-lateinit var binding: FragmentSeeMoreBinding
-
+    lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_see_more, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,container,false)
         return binding.root
     }
 

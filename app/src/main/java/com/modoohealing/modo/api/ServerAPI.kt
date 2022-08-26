@@ -8,7 +8,7 @@ class ServerAPI {
     //Retrofit 타입 객체 하나만 생성 -> 모두가 공유
 
     companion object {
-        private var BASE_URL = "http://3.34.159.73"
+        private var BASE_URL = "https://keepthetime.xyz"
         private var retrofit : Retrofit? = null //앱이 처음 켜질때는 없다. => 한번만 만들고 함수를 통해서 공유
 
         fun getRetrofit(): Retrofit {
