@@ -50,7 +50,7 @@ class EmailLoginActivity : BaseActivity() {
                 binding.edtPw.requestFocus()
                 return@setOnClickListener
             }
-            //todo 서버호출
+            //로그인 서버호출
             apiService.postRequestLogin(email,pw).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(
                     call: Call<BasicResponse>,
@@ -58,22 +58,19 @@ class EmailLoginActivity : BaseActivity() {
                 ) {
                     if (response.isSuccessful){
                         val basicRespones = response.body()
-
                         if (basicRespones != null){
-
                             Log.d("코드값 + 메시지","코드값: ${basicRespones.code}, 메시지: ${basicRespones.message}")
                             Toast.makeText(mContext, "코드값: ${basicRespones.code}, 메시지: ${basicRespones.message}", Toast.LENGTH_SHORT).show()
-
                         }
-                        else{
-                            val errorJson= JSONObject(response.errorBody()!!.string())
-                            Log.d("에러인 경우", errorJson.toString())
 
-                            val message = errorJson.getString("message")
-                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
-                        }
+                    else{
+                        val errorJson= JSONObject(response.errorBody()!!.string())
+                        Log.d("에러인 경우", errorJson.toString())
+
+                        val message = errorJson.getString("message")
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                     }
-
+                }
 
 
                   }
