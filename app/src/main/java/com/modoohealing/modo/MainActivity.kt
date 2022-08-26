@@ -10,6 +10,7 @@ import com.modoohealing.modo.bottomusers.UsersFragment
 import com.modoohealing.modo.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
+
     lateinit var binding: ActivityMainBinding
     private val homeFragment by lazy { HomeFragment() }
     private val usersFragment by lazy { UsersFragment() }

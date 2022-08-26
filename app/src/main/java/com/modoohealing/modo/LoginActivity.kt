@@ -42,14 +42,16 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-
         setValues()
         setupEvents()
-
 
     }
 
     override fun setupEvents() {
+
+        binding.btnEmailLogin.setOnClickListener {
+            startActivity(Intent(mContext, EmailLoginActivity::class.java))
+        }
 
         binding.btnKakaoLogin.setOnClickListener {
 
